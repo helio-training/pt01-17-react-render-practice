@@ -8,13 +8,6 @@ class Person extends Component {
     this.state = { ...props.person };
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    console.log(this.state);
-    console.log(this.props.person);
-  };
-
   render() {
     return (
       <form onSubmit={e => {
@@ -24,7 +17,7 @@ class Person extends Component {
         console.log('Props', this.props.person);
 
 
-        this.props.onPersonSaved(this.state)
+        this.props.onPersonSaved(this.state);
       }}>
 
         <fieldset>
@@ -45,8 +38,6 @@ class Person extends Component {
     )
   }
 }
-
-console.log(PropTypes);
 
 Person.propTypes = {
   person: PropTypes.object.isRequired,

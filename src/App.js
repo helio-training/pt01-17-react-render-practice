@@ -9,9 +9,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Person person={PERSON} onPersonSaved={ person => {
-          console.log('App', person);
-        }} />
+        <Person
+          person={PERSON}
+          onPersonSaved={ person => {
+            console.log('App', person);
+          }}
+        />
       </div>
     );
   }
