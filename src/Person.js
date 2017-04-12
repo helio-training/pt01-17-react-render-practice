@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-
-const PERSON = { name: 'Tyler', isActive: true };
+import PropTypes from 'prop-types';
 
 class Person extends Component {
 
-  constructor() {
-    super();
-    this.state = PERSON;
+  constructor(props) {
+    super(props);
+    this.state = { ...props.person };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    
+
+    console.log(this.state);
+    console.log(this.props.person);
   };
 
   render() {
-    console.log(this.state);
-
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={e => {
+        e.preventDefault();
+
+        console.log('State', this.state);
+        console.log('Props', this.props.person);
+
+
+        this.props.onPersonSaved(this.state)
+      }}>
 
         <fieldset>
           <input type="text" placeholder="Name" value={this.state.name} onChange={e => this.setState({ name: e.target.value })} required minLength="3" />
@@ -38,5 +45,12 @@ class Person extends Component {
     )
   }
 }
+
+console.log(PropTypes);
+
+Person.propTypes = {
+  person: PropTypes.object.isRequired,
+  onPersonSaved: PropTypes.func.isRequired
+};
 
 export default Person;
